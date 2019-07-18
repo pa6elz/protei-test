@@ -2,7 +2,6 @@ package playground.controller;
 
 import org.springframework.web.bind.annotation.*;
 import playground.domain.user.User;
-import playground.exceptions.InternalServerErrorException;
 import playground.exceptions.NotFoundException;
 import playground.json.view.StatusChangeRequest;
 import playground.json.view.StatusChangeResponse;
@@ -15,11 +14,6 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping("/users")
-    public Iterable<User> getUsers() {
-        return userService.getAllUsers();
     }
 
     @GetMapping("/users/{id}")
