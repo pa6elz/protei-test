@@ -28,10 +28,11 @@ public class UserController {
 
     @PutMapping("/users/{id}")
     public StatusChangeResponse updateStatus(@PathVariable(name = "id") long id, @RequestBody StatusChangeRequest body) {
-        User user = getUser(id);
+        throw new IllegalStateException();
+        /*User user = getUser(id);
         User.Status previousStatus = user.getStatus();
         user.setStatus(body.getStatus());
         user = userService.update(user);
-        return new StatusChangeResponse(user.getId().get(), previousStatus, user.getStatus());
+        return new StatusChangeResponse(user.getId().get(), previousStatus, user.getStatus());*/
     }
 }
