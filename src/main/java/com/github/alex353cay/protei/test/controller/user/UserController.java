@@ -1,7 +1,7 @@
-package com.github.alex353cay.protei.test.controller;
+package com.github.alex353cay.protei.test.controller.user;
 
+import com.github.alex353cay.protei.test.controller.user.exception.UserNotFoundException;
 import com.github.alex353cay.protei.test.domain.user.User;
-import com.github.alex353cay.protei.test.exceptions.NotFoundException;
 import com.github.alex353cay.protei.test.json.view.StatusChangeRequest;
 import com.github.alex353cay.protei.test.json.view.StatusChangeResponse;
 import com.github.alex353cay.protei.test.json.view.UserAdditionResponse;
@@ -18,7 +18,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUser(@PathVariable(name = "id") long id) {
-        return userService.getUser(id).orElseThrow(NotFoundException::new);
+        return userService.getUser(id).orElseThrow(UserNotFoundException::new);
     }
 
     @PostMapping("/users")

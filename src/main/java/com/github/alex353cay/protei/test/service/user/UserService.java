@@ -65,5 +65,6 @@ public class UserService {
                 user.setLastTimeOnlineStatusHasBeenSet(null);
             }
         } else user.setLastTimeOnlineStatusHasBeenSet(null);
+        update(user);
     }
 }
