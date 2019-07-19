@@ -57,8 +57,8 @@ class UserServiceTest {
         when(userRepository.findById(4L)).thenReturn(Optional.of(user4));
         when(userRepository.findById(5L)).thenReturn(Optional.empty());
         when(userRepository.save(any())).thenAnswer(invocation -> {
-            final User user = (User) invocation.getArguments()[0];
-            user.setId(0L);
+            User user = (User) invocation.getArguments()[0];
+            if (!user.getId().isPresent()) user.setId(0L);
             return user;
         });
     }
@@ -87,7 +87,8 @@ class UserServiceTest {
             if (user.getId().get() == 2) assertEquals(user.getStatus(), User.Status.Away);
             if (user.getId().get() == 3) assertEquals(user.getStatus(), User.Status.Offline);
             if (user.getId().get() == 4) assertEquals(user.getStatus(), User.Status.Away);
-            if (user.getId().get() != 1) assertFalse(user.getLastTimeOnlineStatusHasBeenSet().isPresent());
+            if (user.getId().get() != 1)
+                assertFalse(user.getLastTimeOnlineStatusHasBeenSet().isPresent());
         });
     }
 
